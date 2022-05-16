@@ -7,28 +7,29 @@ import {
 	AlignmentToolbar,
 	PanelColorSettings,
 	ContrastChecker,
+	withColors,
 } from '@wordpress/block-editor';
 
 import './editor.scss';
 
-export default function Edit({ attributes, setAttributes }) {
-	const { text, alignment, backgroundColor, textColor } = attributes;
-	const onChangeText = (newText) => {
-		setAttributes({
-			text: newText,
-		});
-	};
+function Edit(props) {
+	const {
+		attributes,
+		setAttributes,
+		backgroundColor,
+		textColor,
+		setBackgroundColor,
+		setTextColor,
+	} = props;
+	const { text, alignment } = attributes;
+
 	const onChangeAlignment = (newAlignment) => {
-		setAttributes({
-			alignment: newAlignment,
-		});
+		setAttributes({ alignment: newAlignment });
 	};
-	const onBackgroundColorChange = (newBgColor) => {
-		setAttributes({ backgroundColor: newBgColor });
+	const onChangeText = (newText) => {
+		setAttributes({ text: newText });
 	};
-	const onTextColorChange = (newTextColor) => {
-		setAttributes({ textColor: newTextColor });
-	};
+
 	return (
 		<>
 			{/* here on previous commit (if you want just then see the last commit of this code) we just putted here some lot of codeon placing toolbar by @wordpress/components package. But now we have just here working by another way!*/}
@@ -40,13 +41,13 @@ export default function Edit({ attributes, setAttributes }) {
 					initialOpen
 					colorSettings={[
 						{
-							value: backgroundColor,
-							onChange: onBackgroundColorChange,
+							value: backgroundColor.color,
+							onChange: setBackgroundColor,
 							label: __('Background Color', 'text-box'),
 						},
 						{
-							value: textColor,
-							onChange: onTextColorChange,
+							value: textColor.color,
+							onChange: setTextColor,
 							label: __('Text Color', 'text-box'),
 						},
 					]}
@@ -67,8 +68,8 @@ export default function Edit({ attributes, setAttributes }) {
 				{...useBlockProps({
 					className: `text-box-align-${alignment}`,
 					style: {
-						backgroundColor,
-						color: textColor,
+						backgroundColor: backgroundColor.color,
+						color: textColor.color,
 					},
 				})}
 				onChange={onChangeText}
@@ -83,3 +84,8 @@ export default function Edit({ attributes, setAttributes }) {
 		</>
 	);
 }
+
+export default withColors({
+	backgroundColor: 'backgroundColor',
+	textColor: 'color',
+})(Edit);
