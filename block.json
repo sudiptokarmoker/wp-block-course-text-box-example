@@ -5,53 +5,61 @@
 	"category": "text",
 	"icon": "text-page",
 	"description": "A box of text.",
-	"keywords": [ "text", "paragraph", "box"],
+	"keywords": [
+	  "text",
+	  "paragraph",
+	  "box"
+	],
 	"supports": {
-		"html": false,
-		"color": {
-			"background": true,
-			"text": true,
-			"gradients": true
-		}
+	  "html": false,
+	  "color": {
+		"background": true,
+		"text": true,
+		"gradients": true
+	  },
+	  "spacing": {
+		"padding": true
+	  }
 	},
 	"textdomain": "text-box",
 	"editorScript": "file:./build/index.js",
 	"editorStyle": "file:./build/index.css",
 	"style": "file:./build/style-index.css",
 	"attributes": {
-		"text": {
-			"type": "string",
-			"source": "html",
-			"selector": "h4"
-		},
-		"alignment": {
-			"type": "string",
-			"default": "left"
-		},
-		"backgroundColor": {
-			"type": "string",
-			"default": "strong-magenta"
-		},
-		"textColor": {
-			"type": "string",
-			"default": "very-light-gray"
-		},
-		"customBackgroundColor": {
-			"type": "string"
-		},
-		"customTextColor": {
-			"type": "string"
-		},
-		"gradient": {
-			"type": "string"
-		},
-		"style": {
-			"type": "object",
-			"default": {
-				"color": {
-					"background": "#f03"
-				}
+	  "text": {
+		"type": "string",
+		"source": "html",
+		"selector": "h4"
+	  },
+	  "alignment": {
+		"type": "string",
+		"default": "left"
+	  },
+	  "backgroundColor": {
+		"type": "string"
+	  },
+	  "textColor": {
+		"type": "string",
+		"default": "very-light-gray"
+	  },
+	  "gradient": {
+		"type": "string"
+	  },
+	  "style": {
+		"type": "object",
+		"default": {
+		  "color": {
+			"background": "#f03"
+		  },
+		  "spacing": {
+			"padding": {
+			  "top": "50px",
+			  "right": "50px",
+			  "bottom": "50px",
+			  "left": "50px"
 			}
+		  }
 		}
+	  }
 	}
-}
+  }
